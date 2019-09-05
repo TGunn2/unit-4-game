@@ -5,71 +5,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Crystal Collector Game</title>
+    <title>afterclasspractive</title>
 </head>
 
 <body>
-    <div id="titlebox">
-        <h1 id="title">CrystalCollectors!</h1>
-    </div>
-
-    <div id="instruction">
-        <p id="text">
-            * There will be four crystals displayed as buttons on the page.
-
-            * The player will be shown a random number at the start of the game.
-
-            * When the player clicks on a crystal, it will add a specific amount of points to the player's total score.
-
-            * Your game will hide this amount until the player clicks a crystal.
-            * When they do click one, update the player's score counter.
-
-            * The player wins if their total score matches the random number from the beginning of the game.
-
-            * The player loses if their score goes above the random number.
-
-            * The game restarts whenever the player wins or loses.
-
-            * When the game begins again, the player should see a new random number. Also, all the crystals will have
-            four new hidden values. Of course, the user's score (and score counter) will reset to zero.
-
-
-        </p>
-    </div>
-
-    <div id="totalContainer">
-        <h3><span id="randomNumber"></span></h3>
-    </div>
-
-    <div id="wlContainer">
-        <strong>wins</strong><span id="win-counter">0</span>
-        <strong>losses</strong><span id="loss-counter">0</span>
-    </div>
-
-    <button id="crysta1"></button>
-    <button id="crysta2"></button>
-    <button id="crysta3"></button>
-    <button id="crysta4"></button>
-
-    <div id="Score">
-        <strong>Your score so far</strong>
-        <div><span id="score"></span></div>
-    </div>
+    <img id="crystal1" src="assets/images/crystal1.png">
+    <img id="crystal2" src="assets/images/crystal2.png">
+    <img id="crystal3" src="assets/images/crystal3.png">
+    <img id="crystal4" src="assets/images/crystal4.png">
+    <h3 >Number you need to reach: <span id="total"></span></h3>
+    <h3 >Your score so far: <span id="score"></span></h3>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-    <script type="text/javascript">
+    <script>
 
-        var minTotal=19;
-        var maxTotal=120;
-        var random = Math.random() * (maxTotal - minTotal) + minTotal;
-       
-        $("#randomNumber").html(random);
+        var gamegoal= Math.floor(Math.random() * 120 + 19);
+        console.log(gamegoal)
 
-        $("#crystal1").append('<img src="assets/images/crystal1.png">')
+        var oneVal = Math.floor(Math.random() * 10 + 1);
+        var twoVal = Math.floor(Math.random() * 10 + 1);
+        var threeVal = Math.floor(Math.random() * 10 + 1);
+        var fourVal = Math.floor(Math.random() * 10 + 1);
+
+        // $("#crystal1").append(oneval);
+        // $("#crystal2").append(twoval);
+        // $("#crystal3").append(threeval);
+        // $("#crystal4").append(fourval);
+
+        var myTotal=0;
+
+        $("#crystal1").on("click", function(){
+            myTotal = myTotal + oneVal;
+            console.log(myTotal);
+            $("#score").text(myTotal);
+            checkwin();
+        });
+
         
 
+        $("#crystal2").on("click", function(){
+            myTotal = myTotal + twoVal;
+            console.log(myTotal);
+            $("#score").text(myTotal);
+            checkwin();
+        });
+
+        $("#crystal3").on("click", function(){
+            myTotal = myTotal + threeVal;
+            console.log(myTotal);
+            $("#score").text(myTotal);
+            checkwin();
+        });
+
+        $("#crystal4").on("click", function(){
+            myTotal = myTotal + fourVal;
+            console.log(myTotal);
+            $("#score").text(myTotal);
+            checkwin();
+        });
+
+        $("#total").text(gamegoal);
+
+        function checkwin(){
+            if(gamegoal === myTotal) {
+                alert("you win")
+            };
+
+            if(myTotal > gamegoal) {
+                alert("you loose")
+            }
+        }
+
+        
+    
     
     
     
@@ -79,6 +89,10 @@
     
     
     </script>
+
+
+
+
 </body>
 
 </html>
